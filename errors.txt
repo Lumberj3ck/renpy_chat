@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 174: expected a keyword argument or end of line.
-    action current_branch += option
-                           ^
+File "game/script.rpy", line 14: invalid syntax
+                    "b": {"message": "Love you too ❤️", "reply_message": "Love you"}
+                     ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Fri Jul 19 01:04:54 2024
+Fri Jul 19 01:35:47 2024

@@ -10,11 +10,12 @@
             "message": "I don't know what to say", 
             "reply_message": "Okay, Bye",
             "replies": {
-                "a": {"message": "No, 👉", "reply_message": "Fuck off"}
+                "a": {"message": "You're not my son anymore, 🖕", "reply_message": "Fuck off"},
+                "b": {"message": "Love you too ❤️\nBye", "reply_message": "Love you"}
             }
         }, 
-        "b": {"message": "I don't know", "reply_message": "Ok"},
-        "c": {"message": "fuck off", "reply_message": "Oh, shoot"}
+        "b": {"message": "You're borring", "reply_message": "Ok"},
+        "c": {"message": "Oh, shoot", "reply_message": "shit fuck off"}
         }
     },
     "b": {
@@ -31,18 +32,9 @@
 
     current_branch_path = ""
 
-    def render_the_branch(branch):
-        curr = answers 
-        for option in branch:
-            curr = answers["replies"][option]
-            print(curr["message"])
-            print(curr["reply_message"])
-            # text curr["reply_message"] pos (1.0, 0)
-        return cb
-    
-    def move_branch(option, curr):
-        curr = curr["replies"][option]
-        return curr
+    def move_branch_to_the_option(current_branch, option):
+        current_branch = current_branch["replies"][option]
+        return current_branch
 
     def update_current_branch_path(option):
         global current_branch_path
@@ -50,22 +42,14 @@
 
 
 label start:
-    menu:
-        "Option 1":
-            call screen actions_screen
+    call screen actions_screen
 
 screen actions_screen():
-    # python:
-    #     # a = {"asdf": 'asadf'}
-    #     # say("asdf", a["asdf"])
-    #     curr = answers 
-    #     for option in current_branch:
-    #         curr = curr["replies"][option]
-    #         renpy.show("image tag", what=Text(curr["message"]))
     $ current_branch = answers 
     vbox:
         for option in current_branch_path:
-            $ current_branch = current_branch["replies"][option]
+            # $ current_branch = current_branch["replies"][option]
+            $ current_branch = move_branch_to_the_option(current_branch, option)
             text current_branch["reply_message"] 
             text current_branch["message"] 
 
@@ -77,26 +61,3 @@ screen actions_screen():
                     xpos 2.5
                     textbutton "[repl['reply_message']]":
                         action Function(update_current_branch_path, option)
-
-
-# default dict1 = {"m1": ["Hello", "Hi"],}
-
-# default dict2 = {"m2": ["How are you?", "Fine"],}
-
-
-# init -1 python:
-#     def fun2():
-#         dict1.update(dict2)
-#         return
-
-
-# screen actions_screen_2():
-
-#     vbox:
-
-#         for message in dict1.values():
-#             text message[0] pos (1.0, 0)
-#             text message[1] pos (0.0, 0)
-
-#         textbutton "[dict2['m2'][0]]":
-#             action Function(fun2)
