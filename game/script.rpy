@@ -30,7 +30,7 @@
     }
     }
 
-    current_branch_path = ""
+    current_branch_path = "aa"
 
     def move_branch_to_the_option(current_branch, option):
         current_branch = current_branch["replies"][option]
