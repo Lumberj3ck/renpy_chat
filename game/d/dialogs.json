@@ -1,0 +1,50 @@
+{
+    "replies": {
+        "a": {
+            "message": "Hi man",
+            "reply_message": "Hi, dad",
+            "replies": {
+                "a": {
+                    "message": "I don't know what to say",
+                    "reply_message": "Okay, Bye",
+                    "replies": {
+                        "a": {
+                            "message": "You're not my son anymore",
+                            "reply_message": "Fuck off"
+                        },
+                        "b": {
+                            "message": "Love you too \nBye",
+                            "reply_message": "Love you"
+                        }
+                    }
+                },
+                "b": {
+                    "message": "You're borring",
+                    "reply_message": "Ok"
+                },
+                "c": {
+                    "message": "Oh, shoot",
+                    "reply_message": "shit fuck off"
+                }
+            }
+        },
+        "b": {
+            "message": "I love you too, son",
+            "reply_message": "Hi, dad, I love you!",
+            "replies": {
+                "a": {
+                    "message": "I don't know what to say",
+                    "reply_message": "Okay, Bye"
+                },
+                "b": {
+                    "message": "You're borring",
+                    "reply_message": "Ok"
+                },
+                "c": {
+                    "message": "Oh, shoot",
+                    "reply_message": "shit fuck off"
+                }
+            }
+        }
+    }
+}
