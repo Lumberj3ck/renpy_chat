@@ -1,4 +1,8 @@
 ﻿init -1 python:
+    # В будущем загружать диалоги из файла
+    # import json
+    # answers = json.load(open(r"C:\Users\Lumberjack\code\renpy\asd\game\d\dialogs.json"))
+    # answers = json.load(open(r"../game/d/dialogs.json"))
     answers =  {
     "replies":
     {
@@ -30,7 +34,7 @@
     }
     }
 
-    current_branch_path = "aa"
+    current_branch_path = ""
 
     def move_branch_to_the_option(current_branch, option):
         current_branch = current_branch["replies"][option]
