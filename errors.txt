@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 6: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape
-    f = open("C:\Users\Lumberjack\code\renpy\asd\test.txt", "w")
-                                                           ^
+File "game/script.rpy", line 77: text statement expects 1 positional arguments, got 0.
+    text 
+         ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Fri Jul 19 19:30:25 2024
+Sat Jul 20 13:17:53 2024

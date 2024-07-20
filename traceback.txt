@@ -1,24 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 49, in script
+  File "game/script.rpy", line 68, in script
     call screen actions_screen
   File "renpy/common/000statements.rpy", line 671, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/script.rpy", line 51, in execute
-    screen actions_screen():
-  File "game/script.rpy", line 51, in execute
-    screen actions_screen():
-  File "game/script.rpy", line 52, in execute
-    $ current_branch = answers
-  File "game/script.rpy", line 52, in <module>
-    $ current_branch = answers
-NameError: name 'answers' is not defined
+  File "game/script.rpy", line 70, in execute
+    screen money_balance():
+  File "game/script.rpy", line 70, in execute
+    screen money_balance():
+  File "game/script.rpy", line 71, in execute
+    frame:
+  File "game/script.rpy", line 72, in execute
+    vbox:
+  File "game/script.rpy", line 73, in execute
+    text balance
+Exception: Cannot display 0 as text.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 49, in script
+  File "game/script.rpy", line 68, in script
     call screen actions_screen
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 1971, in execute
     self.call("execute")
@@ -50,17 +52,21 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 51, in execute
-    screen actions_screen():
-  File "game/script.rpy", line 51, in execute
-    screen actions_screen():
-  File "game/script.rpy", line 52, in execute
-    $ current_branch = answers
-  File "game/script.rpy", line 52, in <module>
-    $ current_branch = answers
-NameError: name 'answers' is not defined
+  File "game/script.rpy", line 70, in execute
+    screen money_balance():
+  File "game/script.rpy", line 70, in execute
+    screen money_balance():
+  File "game/script.rpy", line 71, in execute
+    frame:
+  File "game/script.rpy", line 72, in execute
+    vbox:
+  File "game/script.rpy", line 73, in execute
+    text balance
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\text\text.py", line 1717, in __init__
+    raise Exception("Cannot display {0!r} as text.".format(i))
+Exception: Cannot display 0 as text.
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Fri Jul 19 21:49:13 2024
+Sat Jul 20 13:09:17 2024
