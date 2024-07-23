@@ -39,17 +39,17 @@ init python:
                 # "reply_message": "Hi, dad, I love you!",
                 "replies": {
                 "a": {
-                    "reply_message": "Ah I don't have yet", 
+                    "message": "Ah I don't have yet", 
                     "reply_message": "I want to go tommorow, But, I need some money for entry", 
                     "replies":{
                         "a": {"message": "That's okay", "reply_message": "Okay", "next": "end"},
                         "b": {"message": "But you owe me money!", "reply_message": "No I don't ", "next": "end"},
                     }
                 },
-                "b": {"reply_message": "I wanna go with you", "reply_message": "I want to go today", "next": "end"}
-                }
+                "b": {"message": "I wanna go with you", "reply_message": "I want to go today", "next": "end"}
             }
-        },
+        }
+    },
 }
 
 history = {

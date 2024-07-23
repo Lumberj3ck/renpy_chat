@@ -73,6 +73,22 @@
         # # f.write("asdf")
         # f.close()
 
+    def get_initial_branch(character_branch, about=None):
+        # Пока что пусть определяет исходя из времени на устройстве
+        current_hour = datetime.now().hour
+        # global_event это например концерт
+        if global_event in character_branch:
+            return character_branch[global_event]
+        if about in character_branch:
+            return character_branch[about]
+        if current_hour < 12 and "morning" in character_branch:
+            return character_branch["morning"]
+        elif current_hour < 18 and "afternoon_chat" in character_branch:
+            return character_branch["afternoon_chat"]
+        elif "evening_talk" in character_branch:
+            return character_branch["evening_talk"]
+
+
 
 label start:
     # list_of_strings = ["sylvia_dialogs", "dad_dialogs", "schwester_dialogs"]
@@ -93,8 +109,24 @@ screen money_balance():
             textbutton "Close":
                 action Hide("money_balance")
 
-screen actions_screen(who, where):
-    $ current_branch = answers[who]
+# in charge
+# 1. Call the screen with character name and about topic
+# 2. Get the branch for the topic automatically
+# 2. Get the character name and the topic to speak
+# 3. If there is already history chat with this character load it
+# 4. Save the options for dialogs
+# 5. Go through the dialogs if there is a next option change current_branch
+
+history = {
+    "Dad": {
+        "event": "abacad"
+    }
+}
+
+screen actions_screen(who, about=None):
+    # get some specific branch by default like day time
+    $ character_branch = answers[who]
+    $ current_branch = get_initial_branch(character_branch, about)
     # $ current_branch = globals()[where][who]
 
     vbox:
