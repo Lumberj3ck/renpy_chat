@@ -1,27 +1,25 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 68, in script
-    call screen actions_screen
+  File "game/script.rpy", line 75, in script
+    call screen actions_screen ("Sylvia", "sylvia_dialogs")
   File "renpy/common/000statements.rpy", line 671, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/script.rpy", line 70, in execute
-    screen money_balance():
-  File "game/script.rpy", line 70, in execute
-    screen money_balance():
-  File "game/script.rpy", line 71, in execute
-    frame:
-  File "game/script.rpy", line 72, in execute
-    vbox:
-  File "game/script.rpy", line 73, in execute
-    text balance
-Exception: Cannot display 0 as text.
+  File "game/script.rpy", line 88, in execute
+    screen actions_screen(who, where):
+  File "game/script.rpy", line 88, in execute
+    screen actions_screen(who, where):
+  File "game/script.rpy", line 92, in execute
+    $ get("name_of_dict", "key")
+  File "game/script.rpy", line 92, in <module>
+    $ get("name_of_dict", "key")
+NameError: name 'get' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 68, in script
-    call screen actions_screen
+  File "game/script.rpy", line 75, in script
+    call screen actions_screen ("Sylvia", "sylvia_dialogs")
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 1971, in execute
     self.call("execute")
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 1953, in call
@@ -52,21 +50,17 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 70, in execute
-    screen money_balance():
-  File "game/script.rpy", line 70, in execute
-    screen money_balance():
-  File "game/script.rpy", line 71, in execute
-    frame:
-  File "game/script.rpy", line 72, in execute
-    vbox:
-  File "game/script.rpy", line 73, in execute
-    text balance
-  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\text\text.py", line 1717, in __init__
-    raise Exception("Cannot display {0!r} as text.".format(i))
-Exception: Cannot display 0 as text.
+  File "game/script.rpy", line 88, in execute
+    screen actions_screen(who, where):
+  File "game/script.rpy", line 88, in execute
+    screen actions_screen(who, where):
+  File "game/script.rpy", line 92, in execute
+    $ get("name_of_dict", "key")
+  File "game/script.rpy", line 92, in <module>
+    $ get("name_of_dict", "key")
+NameError: name 'get' is not defined
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Sat Jul 20 13:09:17 2024
+Mon Jul 22 11:44:38 2024
