@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 50: invalid syntax
-        if about in character_branch: and about not in character_chat_history:
-                                       ^
+File "game/script.rpy", line 129: unexpected indent
+        get_initial_branch(character_branch, character_chat_history, about)
+        ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Wed Jul 24 18:04:42 2024
+Wed Jul 24 23:42:21 2024

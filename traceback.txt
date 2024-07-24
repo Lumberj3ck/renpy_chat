@@ -1,43 +1,37 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 61, in script
-    call screen actions_screen("Dad", "start")
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/script.rpy", line 82, in execute
+  File "game/script.rpy", line 90, in script
+    ""
+  File "game/script.rpy", line 120, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 82, in execute
+  File "game/script.rpy", line 120, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 90, in execute
+  File "game/script.rpy", line 135, in execute
     vbox:
-  File "game/script.rpy", line 91, in execute
-    for branch, options in character_chat_history.items():
-  File "game/script.rpy", line 97, in execute
-    for option in options:
-  File "game/script.rpy", line 98, in execute
-    $ render_branch = move_branch_to_the_option(render_branch, option)
-  File "game/script.rpy", line 98, in <module>
-    $ render_branch = move_branch_to_the_option(render_branch, option)
-  File "game/script.rpy", line 12, in move_branch_to_the_option
-    current_branch = branch["replies"][option]
-KeyError: 'replies'
+  File "game/script.rpy", line 157, in execute
+    $ character_start = current_branch.get("character_start", False)
+  File "game/script.rpy", line 157, in <module>
+    $ character_start = current_branch.get("character_start", False)
+AttributeError: 'NoneType' object has no attribute 'get'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 61, in script
-    call screen actions_screen("Dad", "start")
-  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 1971, in execute
-    self.call("execute")
-  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 1953, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\statements.py", line 349, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 671, in execute_call_screen
-    store._return = renpy.call_screen(name, *args, **kwargs)
-  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\exports.py", line 3420, in call_screen
-    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "game/script.rpy", line 90, in script
+    ""
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 2560, in execute
+    Say.execute(self)
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 615, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\exports.py", line 1494, in say
+    who(what, *args, **kwargs)
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\character.py", line 1394, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\character.py", line 1045, in do_display
+    display_say(who,
+  File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\character.py", line 741, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ui.py", line 301, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\core.py", line 2166, in interact
@@ -58,25 +52,19 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 82, in execute
+  File "game/script.rpy", line 120, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 82, in execute
+  File "game/script.rpy", line 120, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 90, in execute
+  File "game/script.rpy", line 135, in execute
     vbox:
-  File "game/script.rpy", line 91, in execute
-    for branch, options in character_chat_history.items():
-  File "game/script.rpy", line 97, in execute
-    for option in options:
-  File "game/script.rpy", line 98, in execute
-    $ render_branch = move_branch_to_the_option(render_branch, option)
-  File "game/script.rpy", line 98, in <module>
-    $ render_branch = move_branch_to_the_option(render_branch, option)
-  File "game/script.rpy", line 12, in move_branch_to_the_option
-    current_branch = branch["replies"][option]
-KeyError: 'replies'
+  File "game/script.rpy", line 157, in execute
+    $ character_start = current_branch.get("character_start", False)
+  File "game/script.rpy", line 157, in <module>
+    $ character_start = current_branch.get("character_start", False)
+AttributeError: 'NoneType' object has no attribute 'get'
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Wed Jul 24 18:05:15 2024
+Wed Jul 24 23:47:41 2024

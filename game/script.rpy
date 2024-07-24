@@ -38,35 +38,61 @@
         return False
 
     def print_to_file(data):
-        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "a")
+        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "w")
         f.write(str(data))
         f.write("\n")
         f.close()
 
     def get_initial_branch(character_branch, character_chat_history, about=None):
-        # Пока что пусть определяет исходя из времени на устройстве
-        global current_branch, topic
-        # global_event это например концерт
+        global topic
         if about in character_branch and about not in character_chat_history:
-            current_branch, topic = character_branch[about], about
-            return
+            topic = about
+            return character_branch[about]
 
         if global_event in character_branch and global_event not in character_chat_history:
-            current_branch, topic = character_branch[global_event], global_event
-            return
+            topic = global_event
+            return character_branch[global_event]
+
+        # Default case
+        # topic = "start"  # or any default topic you prefer
+        return {}
 
 
 label start:
     # $ current_branch, topic = get_initial_branch(answers["Dad"], "rock_concert")
-    call screen actions_screen("Dad")
+    
+
+    show screen contacts
+    ""
+
+
+    # show screen actions_screen("Dad")
+    # ""
+    # "Rock!"
+
+    # $ global_event = "rock_concert"
+    # show screen actions_screen("Dad")
+    # ""
+    # $ global_event = "dinner"
+    # show screen actions_screen("Dad")
+    ""
+
+
+
+screen contacts:
+    vbox:
+        align (0.5,0.5)
+        textbutton "Dad" action Show ("actions_screen",who="Dad")
+        textbutton "Sister" action Show ("actions_screen",who="Sister")
 
 
 screen money_balance():
     modal True
 
+    
     frame:
+        xalign 1.0
         vbox:
-            text "Your account balance has been topped up"
             text "Balance:"
             text str(balance)
             textbutton "Close":
@@ -80,14 +106,21 @@ screen money_balance():
 
 # About is not mandatory argument
 screen actions_screen(who, about=None):
+    use money_balance 
+    modal True
+
     python:
         if who not in history:
             history[who] = {}
         character_branch = answers[who]
         character_chat_history = history[who]
-        get_initial_branch(character_branch, character_chat_history, about)
+    # using local var instead of global which cause a problem 
+    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+    
 
     vbox:
+        textbutton "close" action Hide ("actions_screen")
+
         for branch, options in character_chat_history.items():
             $ render_branch = character_branch[branch]
             $ character_start = render_branch.get("character_start", False)
@@ -118,9 +151,10 @@ screen actions_screen(who, about=None):
     $ replies_present = current_branch.get("replies") 
     if replies_present:
         vbox:
+            
             for option, repl in current_branch["replies"].items():
                 $ up = current_branch["replies"][option]
                 hbox: 
                     xpos 2.5
                     textbutton "[repl['reply_message']]":
-                        action (Function(update_character_chat_history, character_chat_history, topic, option), SetVariable("current_branch", up))
+                        action (Function(update_character_chat_history, character_chat_history, topic, option), SetScreenVariable("current_branch", up))
