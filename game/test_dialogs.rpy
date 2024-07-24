@@ -64,6 +64,9 @@ init -2 python:
                                 "message": "Okay",
                                 "reply_message": "I want more",
                                 "money_top_up": 999,
+                            },
+                            "b":{
+                                "reply_message": "Thank you", 
                             }
                         }
                     },
@@ -75,6 +78,6 @@ init -2 python:
 
     history = {
         "Dad":{
-            "start": "ba"
+            # "start": "ba"
         }
     }

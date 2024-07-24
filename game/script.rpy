@@ -1,7 +1,6 @@
 ﻿init -1 python:
-    from datetime import datetime
     balance = 0
-    global_event = ""
+    global_event = "start"
     current_branch = {}
     topic = ""
 
@@ -47,7 +46,6 @@
     def get_initial_branch(character_branch, character_chat_history, about=None):
         # Пока что пусть определяет исходя из времени на устройстве
         global current_branch, topic
-        current_hour = datetime.now().hour
         # global_event это например концерт
         if about in character_branch and about not in character_chat_history:
             current_branch, topic = character_branch[about], about
@@ -57,20 +55,10 @@
             current_branch, topic = character_branch[global_event], global_event
             return
 
-        if current_hour < 12 and "morning" in character_branch:
-            current_branch, topic = character_branch["morning"], "morning" 
-            return
-        elif current_hour < 18 and "afternoon_chat" in character_branch:
-            current_branch, topic = character_branch["afternoon_chat"], "afternoon_chat" 
-            return
-        elif "evening_talk" in character_branch:
-            current_branch, topic = character_branch["evening_talk"], "evening_talk" 
-            return
-
 
 label start:
     # $ current_branch, topic = get_initial_branch(answers["Dad"], "rock_concert")
-    call screen actions_screen ("Dad", "rock_concert")
+    call screen actions_screen("Dad")
 
 
 screen money_balance():
@@ -90,16 +78,14 @@ screen money_balance():
 # 3. If there is already history chat with this character load it
 # 4. Save the options for dialogs
 
+# About is not mandatory argument
 screen actions_screen(who, about=None):
-     
     python:
         if who not in history:
             history[who] = {}
         character_branch = answers[who]
         character_chat_history = history[who]
         get_initial_branch(character_branch, character_chat_history, about)
-
-        # current_branch, topic = get_initial_branch(character_branch, about)
 
     vbox:
         for branch, options in character_chat_history.items():
