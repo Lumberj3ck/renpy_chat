@@ -113,6 +113,10 @@ screen actions_screen(who, about=None):
         if who not in history:
             history[who] = {}
         character_branch = answers[who]
+        # Достать ветки из словаря для персонажа 
+        # словарь должен быть назван например вот так: Dad_dialogs
+        # ну или поменять просто строчку 
+        # character_branch = globals()[who+"_dialogs"]
         character_chat_history = history[who]
     # using local var instead of global which cause a problem 
     default current_branch = get_initial_branch(character_branch, character_chat_history, about)

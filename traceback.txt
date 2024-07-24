@@ -1,24 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 66, in script
     ""
-  File "game/script.rpy", line 120, in execute
+  File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 120, in execute
+  File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 135, in execute
-    vbox:
-  File "game/script.rpy", line 157, in execute
-    $ character_start = current_branch.get("character_start", False)
-  File "game/script.rpy", line 157, in <module>
-    $ character_start = current_branch.get("character_start", False)
-AttributeError: 'NoneType' object has no attribute 'get'
+  File "game/script.rpy", line 112, in execute
+    python:
+  File "game/script.rpy", line 116, in <module>
+    character_branch = globals()[who+"_dialogs"][who]
+KeyError: 'Sister_dialogs'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 66, in script
     ""
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 2560, in execute
     Say.execute(self)
@@ -52,19 +50,17 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 120, in execute
+  File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 120, in execute
+  File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 135, in execute
-    vbox:
-  File "game/script.rpy", line 157, in execute
-    $ character_start = current_branch.get("character_start", False)
-  File "game/script.rpy", line 157, in <module>
-    $ character_start = current_branch.get("character_start", False)
-AttributeError: 'NoneType' object has no attribute 'get'
+  File "game/script.rpy", line 112, in execute
+    python:
+  File "game/script.rpy", line 116, in <module>
+    character_branch = globals()[who+"_dialogs"][who]
+KeyError: 'Sister_dialogs'
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Wed Jul 24 23:47:41 2024
+Wed Jul 24 23:54:16 2024
