@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 79: is not terminated with a newline. (Check strings and parenthesis.)
-(Perhaps you left out a " at the end of the first line.)
-        call screen actions_screen ("Sylvia", sylvia_dialogs")
+File "game/test_dialogs.rpy", line 66: invalid syntax
+                                    "money_top_up": 100,
+                                                   ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Mon Jul 22 11:48:03 2024
+Wed Jul 24 16:38:22 2024
