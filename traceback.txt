@@ -7,11 +7,13 @@ While running game code:
     screen actions_screen(who, about=None):
   File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 112, in execute
-    python:
-  File "game/script.rpy", line 116, in <module>
-    character_branch = globals()[who+"_dialogs"][who]
-KeyError: 'Sister_dialogs'
+  File "game/script.rpy", line 122, in execute
+    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+  File "game/script.rpy", line 122, in <module>
+    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+  File "game/script.rpy", line 52, in get_initial_branch
+    if global_event in character_branch and global_event not in character_chat_history:
+NameError: name 'global_event' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -54,13 +56,15 @@ Full traceback:
     screen actions_screen(who, about=None):
   File "game/script.rpy", line 108, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 112, in execute
-    python:
-  File "game/script.rpy", line 116, in <module>
-    character_branch = globals()[who+"_dialogs"][who]
-KeyError: 'Sister_dialogs'
+  File "game/script.rpy", line 122, in execute
+    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+  File "game/script.rpy", line 122, in <module>
+    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+  File "game/script.rpy", line 52, in get_initial_branch
+    if global_event in character_branch and global_event not in character_chat_history:
+NameError: name 'global_event' is not defined
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Wed Jul 24 23:54:16 2024
+Thu Jul 25 02:04:47 2024

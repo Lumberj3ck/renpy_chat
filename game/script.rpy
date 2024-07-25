@@ -1,6 +1,6 @@
 ﻿init -1 python:
     balance = 0
-    global_event = "start"
+    global_event = ""
     current_branch = {}
     topic = ""
 
@@ -82,7 +82,7 @@ label start:
 screen contacts:
     vbox:
         align (0.5,0.5)
-        textbutton "Dad" action Show ("actions_screen",who="Dad")
+        textbutton "Dad" action Show ("actions_screen",who="Dad", about="rock_concert")
         textbutton "Sister" action Show ("actions_screen",who="Sister")
 
 
