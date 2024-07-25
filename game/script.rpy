@@ -1,6 +1,6 @@
 ﻿init -1 python:
     balance = 0
-    global_event = "start"
+    global_event = "dinner"
     # current_branch = {}
     # topic = ""
 
@@ -115,13 +115,12 @@ label start:
 screen contacts:
     vbox:
         align (0.5,0.5)
-        textbutton "Dad" action Show ("actions_screen",who="Dad", about="rock_concert")
+        textbutton "Dad" action Show ("actions_screen",who="Dad", about="start")
         textbutton "Sister" action Show ("actions_screen",who="Sister")
 
 
 screen money_balance():
     modal True
-
     
     frame:
         xalign 1.0
@@ -138,6 +137,7 @@ screen money_balance():
 # 4. Save the options for dialogs
 
 # About is not mandatory argument
+# about is prioritised, global_event is choosed after about 
 screen actions_screen(who, about=None):
     use money_balance 
     modal True

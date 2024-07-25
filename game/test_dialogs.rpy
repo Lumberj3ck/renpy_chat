@@ -98,8 +98,6 @@ init -2 python:
                 }
             },
         },
-
-
         "Sister": {
             "start": {
                 "message": "Hi brother",
@@ -121,7 +119,6 @@ init -2 python:
                     }
                 },
             },
-
             "dinner":{
                 "character_start": False,
                 "replies": {
