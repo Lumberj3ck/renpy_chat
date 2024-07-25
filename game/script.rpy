@@ -12,7 +12,6 @@
         current_branch = branch["replies"][option]
         return current_branch
 
-
     def update_current_branch_path(option):
         global current_branch_path
         current_branch_path += option
