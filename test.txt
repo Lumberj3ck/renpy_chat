@@ -1,1 +1,1 @@
-{'message': 'Okay', 'reply_message': 'give me money', 'money_top_up': 100, 'replies': {'a': {'message': 'Okay', 'reply_message': 'I want more', 'money_top_up': 999}, 'p': {'reply_message': 'Thank you'}}}
+{'Dad': {'rock_concert': 'ba'}, 'Sister': {}}

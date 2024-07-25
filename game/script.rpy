@@ -1,8 +1,8 @@
 ﻿init -1 python:
     balance = 0
-    global_event = ""
-    current_branch = {}
-    topic = ""
+    global_event = "start"
+    # current_branch = {}
+    # topic = ""
 
     # Для того чтобы удостовериться что пополнялось один раз за одну ветку
     last_balance_top_up_branch = ""
@@ -56,7 +56,7 @@
         # topic = "start"  # or any default topic you prefer
         return {}
     def get_initial_branch(character_branch, character_chat_history, about=None):
-        global topic
+        # global topic
 
         def navigate_to_branch(branch, path):
             for option in path:
@@ -70,25 +70,25 @@
         if about in character_branch:
             if about not in character_chat_history:
                 topic = about
-                return character_branch[about]
+                return character_branch[about], topic
             else:
                 branch = navigate_to_branch(character_branch[about], character_chat_history[about])
                 if branch and "replies" in branch:
                     topic = about
-                    return branch
+                    return branch, topic
 
         # Check if global_event is available and not finished
         if global_event in character_branch:
             if global_event not in character_chat_history:
                 topic = global_event
-                return character_branch[global_event]
+                return character_branch[global_event], topic
             else:
                 branch = navigate_to_branch(character_branch[global_event], character_chat_history[global_event])
                 if branch and "replies" in branch:
                     topic = global_event
-                    return branch
+                    return branch, topic
 
-        return {}
+        return {}, ""
 
 
 label start:
@@ -152,7 +152,9 @@ screen actions_screen(who, about=None):
         # character_branch = globals()[who+"_dialogs"]
         character_chat_history = history[who]
     # using local var instead of global which cause a problem 
-    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
+    default branch_and_topic = get_initial_branch(character_branch, character_chat_history, about)
+    default current_branch = branch_and_topic[0]
+    default topic = branch_and_topic[1]
     
 
     vbox:
@@ -184,6 +186,8 @@ screen actions_screen(who, about=None):
     $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic)
     if money_toped_up: 
         use money_balance
+
+    $ print_to_file(history)
 
     $ replies_present = current_branch.get("replies") 
     if replies_present:
