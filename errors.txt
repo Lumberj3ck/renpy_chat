@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 129: unexpected indent
-        get_initial_branch(character_branch, character_chat_history, about)
-        ^
+File "game/script.rpy", line 60: expected an indented block
+    global topic
+     ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Wed Jul 24 23:42:21 2024
+Thu Jul 25 02:18:37 2024

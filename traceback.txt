@@ -1,24 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 66, in script
+  File "game/script.rpy", line 101, in script
     ""
-  File "game/script.rpy", line 108, in execute
+  File "game/script.rpy", line 143, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 108, in execute
+  File "game/script.rpy", line 143, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 122, in execute
-    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
-  File "game/script.rpy", line 122, in <module>
-    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
-  File "game/script.rpy", line 52, in get_initial_branch
-    if global_event in character_branch and global_event not in character_chat_history:
-NameError: name 'global_event' is not defined
+  File "game/script.rpy", line 160, in execute
+    vbox:
+  File "game/script.rpy", line 163, in execute
+    for branch, options in character_chat_history.items():
+  File "game/script.rpy", line 169, in execute
+    for option in options:
+  File "game/script.rpy", line 170, in execute
+    $ render_branch = move_branch_to_the_option(render_branch, option)
+  File "game/script.rpy", line 170, in <module>
+    $ render_branch = move_branch_to_the_option(render_branch, option)
+  File "game/script.rpy", line 12, in move_branch_to_the_option
+    current_branch = branch["replies"][option]
+KeyError: 'p'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 66, in script
+  File "game/script.rpy", line 101, in script
     ""
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 2560, in execute
     Say.execute(self)
@@ -52,19 +58,25 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 108, in execute
+  File "game/script.rpy", line 143, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 108, in execute
+  File "game/script.rpy", line 143, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 122, in execute
-    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
-  File "game/script.rpy", line 122, in <module>
-    default current_branch = get_initial_branch(character_branch, character_chat_history, about)
-  File "game/script.rpy", line 52, in get_initial_branch
-    if global_event in character_branch and global_event not in character_chat_history:
-NameError: name 'global_event' is not defined
+  File "game/script.rpy", line 160, in execute
+    vbox:
+  File "game/script.rpy", line 163, in execute
+    for branch, options in character_chat_history.items():
+  File "game/script.rpy", line 169, in execute
+    for option in options:
+  File "game/script.rpy", line 170, in execute
+    $ render_branch = move_branch_to_the_option(render_branch, option)
+  File "game/script.rpy", line 170, in <module>
+    $ render_branch = move_branch_to_the_option(render_branch, option)
+  File "game/script.rpy", line 12, in move_branch_to_the_option
+    current_branch = branch["replies"][option]
+KeyError: 'p'
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Thu Jul 25 02:04:47 2024
+Thu Jul 25 02:34:34 2024

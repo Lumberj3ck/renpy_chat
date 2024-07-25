@@ -43,18 +43,52 @@
         f.write("\n")
         f.close()
 
-    def get_initial_branch(character_branch, character_chat_history, about=None):
-        global topic
-        if about in character_branch and about not in character_chat_history:
-            topic = about
-            return character_branch[about]
+    # def get_initial_branch(character_branch, character_chat_history, about=None):
+    #     global topic
+    #     if about in character_branch and about not in character_chat_history:
+    #         topic = about
+    #         return character_branch[about]
 
-        if global_event in character_branch and global_event not in character_chat_history:
-            topic = global_event
-            return character_branch[global_event]
+    #     if global_event in character_branch and global_event not in character_chat_history:
+    #         topic = global_event
+    #         return character_branch[global_event]
 
         # Default case
         # topic = "start"  # or any default topic you prefer
+        return {}
+    def get_initial_branch(character_branch, character_chat_history, about=None):
+        global topic
+
+        def navigate_to_branch(branch, path):
+            for option in path:
+                if "replies" in branch and option in branch["replies"]:
+                    branch = branch["replies"][option]
+                else:
+                    return None
+            return branch
+
+        # Check if about is provided and not finished
+        if about in character_branch:
+            if about not in character_chat_history:
+                topic = about
+                return character_branch[about]
+            else:
+                branch = navigate_to_branch(character_branch[about], character_chat_history[about])
+                if branch and "replies" in branch:
+                    topic = about
+                    return branch
+
+        # Check if global_event is available and not finished
+        if global_event in character_branch:
+            if global_event not in character_chat_history:
+                topic = global_event
+                return character_branch[global_event]
+            else:
+                branch = navigate_to_branch(character_branch[global_event], character_chat_history[global_event])
+                if branch and "replies" in branch:
+                    topic = global_event
+                    return branch
+
         return {}
 
 
