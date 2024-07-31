@@ -1,6 +1,6 @@
 ﻿init -1 python:
     balance = 0
-    global_event = "dinner"
+    global_event = "rock_concert"
     # current_branch = {}
     # topic = ""
 
@@ -156,38 +156,49 @@ screen actions_screen(who, about=None):
     default current_branch = branch_and_topic[0]
     default topic = branch_and_topic[1]
     
+    default adj = ui.adjustment()
 
     vbox:
         textbutton "close" action Hide ("actions_screen")
 
-        for branch, options in character_chat_history.items():
-            $ render_branch = character_branch[branch]
-            $ character_start = render_branch.get("character_start", False)
-            if character_start:
-                    hbox:
-                        text render_branch["message"]
-            for option in options:
-                $ render_branch = move_branch_to_the_option(render_branch, option)
-                $ is_image = render_branch.get("is_image")
+        frame:
+            style_prefix "chatbox"
+            ysize 500  # Adjust this value as needed
+            
+            viewport id "message_viewport":
+                yinitial 1.0
+                yadjustment adj
+                scrollbars "vertical"
+                mousewheel True
+                draggable True
+                vbox:
+                    for branch, options in character_chat_history.items():
+                        $ render_branch = character_branch[branch]
+                        $ character_start = render_branch.get("character_start", False)
+                        if character_start:
+                                hbox:
+                                    text render_branch["message"]
+                        for option in options:
+                            $ render_branch = move_branch_to_the_option(render_branch, option)
+                            $ is_image = render_branch.get("is_image")
 
-                text render_branch["reply_message"] 
-                if "message" in render_branch:
-                    if is_image:
-                        add render_branch["message"]
-                    else:
-                        text render_branch["message"] 
+                            text render_branch["reply_message"] 
+                            if "message" in render_branch:
+                                if is_image:
+                                    add render_branch["message"]
+                                else:
+                                    text render_branch["message"] 
 
-        # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
-        $ character_start = current_branch.get("character_start", False)
-        if character_start:
-                hbox:
-                    text current_branch["message"]
+                    # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
+                    $ character_start = current_branch.get("character_start", False)
+                    if character_start:
+                            hbox:
+                                text current_branch["message"]
 
     $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic)
     if money_toped_up: 
         use money_balance
 
-    $ print_to_file(history)
 
     $ replies_present = current_branch.get("replies") 
     if replies_present:
@@ -198,4 +209,6 @@ screen actions_screen(who, about=None):
                 hbox: 
                     xpos 2.5
                     textbutton "[repl['reply_message']]":
-                        action (Function(update_character_chat_history, character_chat_history, topic, option), SetScreenVariable("current_branch", up))
+                        action (Function(update_character_chat_history, character_chat_history, topic, option), SetScreenVariable("current_branch", up), Function(lambda adj: adj.change(adj.range), adj)) 
+
+    # timer 0.1 action Function(lambda adj: adj.change(adj.range), adj) repeat True
