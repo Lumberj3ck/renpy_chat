@@ -4,20 +4,15 @@
         "Dad":"start",
         "Sister":"start"
     }
-    # current_branch = {}
-    # topic = ""
 
     # Для того чтобы удостовериться что пополнялось один раз за одну ветку
     last_balance_top_up_branch = ""
 
-    def move_branch_to_the_option(branch, option):
-        # if current_branch
-        current_branch = branch["replies"][option]
-        return current_branch
-
-    def update_current_branch_path(option):
-        global current_branch_path
-        current_branch_path += option
+    def print_to_file(data):
+        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "a")
+        f.write(str(data))
+        f.write("\n")
+        f.close()
 
     def update_character_chat_history(character_chat_history, topic, option):
         character_chat_history[topic].append(option)
@@ -33,33 +28,7 @@
             return True
         return False
 
-    def print_to_file(data):
-        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "a")
-        f.write(str(data))
-        f.write("\n")
-        f.close()
-
-    # def get_initial_branch(character_branch, character_chat_history, about=None):
-    #     global topic
-    #     if about in character_branch and about not in character_chat_history:
-    #         topic = about
-    #         return character_branch[about]
-
-    #     if global_event in character_branch and global_event not in character_chat_history:
-    #         topic = global_event
-    #         return character_branch[global_event]
-
-        # Default case
-        # topic = "start"  # or any default topic you prefer
-        return {}
     def get_initial_branch(who, character_branch, character_chat_history):
-        # Check if about is provided and not finished
-        # if about in character_branch:
-        #     # don't need to navigate to branch cause the dict is now is flat
-        #     branch = character_branch[about]
-        #     return branch, about
-
-        # Check if global_event is available and not finished
         global_event = global_events.get(who, "")
 
         if global_event not in character_chat_history:
@@ -84,22 +53,8 @@
 
 
 label start:
-    # $ current_branch, topic = get_initial_branch(answers["Dad"], "rock_concert")
-    
 
     show screen contacts
-    ""
-
-
-    # show screen actions_screen("Dad")
-    # ""
-    # "Rock!"
-
-    # $ global_event = "rock_concert"
-    # show screen actions_screen("Dad")
-    # ""
-    # $ global_event = "dinner"
-    # show screen actions_screen("Dad")
     ""
 
 
@@ -122,11 +77,6 @@ screen money_balance():
             textbutton "Close":
                 action Hide("money_balance")
 
-# 1. Call the screen with character name and about topic
-# 2. Get the branch for the topic automatically
-# 2. Get the character name and the topic to speak
-# 3. If there is already history chat with this character load it
-# 4. Save the options for dialogs
 
 # history = {
 #     "Dad": {
