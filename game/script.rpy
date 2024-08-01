@@ -164,12 +164,6 @@ screen actions_screen(who):
                         else:
                             text render_branch["response"] 
 
-        # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
-        $ character_start = current_branch.get("character_start", False)
-        # if not at the begining of the event when the event node is already in the history
-        if character_start and global_events.get(who, None) != character_chat_history[topic][-1]:
-                hbox:
-                    text current_branch["response"]
 
     $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic, who)
     if money_toped_up: 
