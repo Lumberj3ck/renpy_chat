@@ -128,8 +128,6 @@ screen money_balance():
 # 3. If there is already history chat with this character load it
 # 4. Save the options for dialogs
 
-# About is not mandatory argument
-# about is prioritised, global_event is choosed after about 
 # history = {
 #     "Dad": {
             # "messages": ["a1", "a2"],
@@ -157,7 +155,7 @@ screen money_balance():
 #     }
 # }
 
-screen actions_screen(who, about=None):
+screen actions_screen(who):
     use money_balance 
     modal True
 
@@ -174,18 +172,11 @@ screen actions_screen(who, about=None):
         # ну или поменять просто строчку 
         # character_branch = globals()[who+"_dialogs"]
         character_chat_history = history[who]
-    # using local var instead of global which cause a problem 
     # now is not restricted with chat history so the branch could appear multiple times
     default branch_and_topic = get_initial_branch(who, character_branch, character_chat_history)
     # suppose to add the starting branch to history
     default current_branch = branch_and_topic[0]
     default topic = branch_and_topic[1]
-    # setup this variable to add a global event to history
-    # default current_topic = topic
-
-    # a = {
-    #     "start": ["start" , "a1", "a2"]
-    # } 
 
 
     vbox:
