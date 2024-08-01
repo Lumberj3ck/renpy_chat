@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 170: Line is indented, but the preceding yinitial statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    yadjustment adj
-    ^
+File "game/test_dialogs.rpy", line 24: invalid syntax
+            }
+             ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Sat Jul 27 11:33:56 2024
+Thu Aug  1 10:09:39 2024

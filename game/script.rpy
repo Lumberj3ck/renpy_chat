@@ -1,6 +1,8 @@
 ﻿init -1 python:
     balance = 0
-    global_event = "rock_concert"
+    global_events = {
+        "Dad":"start"
+    }
     # current_branch = {}
     # topic = ""
 
@@ -16,28 +18,29 @@
         global current_branch_path
         current_branch_path += option
 
-    def update_character_chat_history(character_chat_history, topic, option):
-        if topic in character_chat_history:
-            character_chat_history[topic] = character_chat_history[topic] + option
-        else:
-            character_chat_history[topic] = option
+    def update_character_chat_history(character_chat_history, option, topic):
+        # if len(character_chat_history) == 0 or character_chat_history[-1] != option:
+        for br in (topic, option):
+            if br:
+                character_chat_history.append(br)
+        # if topic in character_chat_history:
+        #     character_chat_history[topic] = character_chat_history[topic] + option
+        # else:
+        #     character_chat_history[topic] = option
 
-    def top_up_money_if_required(current_branch, character_chat_history, topic):
+    def top_up_money_if_required(current_branch, character_chat_history):
         global balance, last_balance_top_up_branch, current_branch_path
 
         money_amount = current_branch.get("money_top_up", 0)
 
-        if topic in character_chat_history:
-            current_branch_path = topic + character_chat_history[topic]
-
-            if money_amount > 0 and last_balance_top_up_branch != current_branch_path:
-                balance += money_amount
-                last_balance_top_up_branch = current_branch_path
-                return True
+        if money_amount > 0 and last_balance_top_up_branch != character_chat_history:
+            balance += money_amount
+            last_balance_top_up_branch = character_chat_history
+            return True
         return False
 
     def print_to_file(data):
-        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "w")
+        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "a")
         f.write(str(data))
         f.write("\n")
         f.close()
@@ -55,38 +58,18 @@
         # Default case
         # topic = "start"  # or any default topic you prefer
         return {}
-    def get_initial_branch(character_branch, character_chat_history, about=None):
-        # global topic
-
-        def navigate_to_branch(branch, path):
-            for option in path:
-                if "replies" in branch and option in branch["replies"]:
-                    branch = branch["replies"][option]
-                else:
-                    return None
-            return branch
-
+    def get_initial_branch(character_branch, who, about=None):
         # Check if about is provided and not finished
         if about in character_branch:
-            if about not in character_chat_history:
-                topic = about
-                return character_branch[about], topic
-            else:
-                branch = navigate_to_branch(character_branch[about], character_chat_history[about])
-                if branch and "replies" in branch:
-                    topic = about
-                    return branch, topic
+            # don't need to navigate to branch cause the dict is now is flat
+            branch = character_branch[about]
+            return branch, about
 
         # Check if global_event is available and not finished
+        global_event = global_events.get(who, None)
         if global_event in character_branch:
-            if global_event not in character_chat_history:
-                topic = global_event
-                return character_branch[global_event], topic
-            else:
-                branch = navigate_to_branch(character_branch[global_event], character_chat_history[global_event])
-                if branch and "replies" in branch:
-                    topic = global_event
-                    return branch, topic
+                branch = character_branch[global_event]
+                return branch, global_event
 
         return {}, ""
 
@@ -115,7 +98,7 @@ label start:
 screen contacts:
     vbox:
         align (0.5,0.5)
-        textbutton "Dad" action Show ("actions_screen",who="Dad", about="start")
+        textbutton "Dad" action Show ("actions_screen",who="Dad")
         textbutton "Sister" action Show ("actions_screen",who="Sister")
 
 
@@ -138,13 +121,16 @@ screen money_balance():
 
 # About is not mandatory argument
 # about is prioritised, global_event is choosed after about 
+# history = {
+#     "Dad": ["a1", "a2"]
+# }
 screen actions_screen(who, about=None):
     use money_balance 
     modal True
 
     python:
         if who not in history:
-            history[who] = {}
+            history[who] = []
         character_branch = answers[who]
         # Достать ветки из словаря для персонажа 
         # словарь должен быть назван например вот так: Dad_dialogs
@@ -152,63 +138,49 @@ screen actions_screen(who, about=None):
         # character_branch = globals()[who+"_dialogs"]
         character_chat_history = history[who]
     # using local var instead of global which cause a problem 
-    default branch_and_topic = get_initial_branch(character_branch, character_chat_history, about)
+    # now is not restricted with chat history so the branch could appear multiple times
+    default branch_and_topic = get_initial_branch(character_branch, who, about)
+    # suppose to add the starting branch to history
     default current_branch = branch_and_topic[0]
     default topic = branch_and_topic[1]
+    # setup this variable to add a global event to history
+    default current_topic = topic
+
     
-    default adj = ui.adjustment()
-
     vbox:
-        textbutton "close" action Hide ("actions_screen")
+        for option in character_chat_history:
+            $ render_branch = character_branch[option]
+            $ character_start = render_branch.get("character_start", False)
+            if character_start:
+                    hbox:
+                        text render_branch["response"]
 
-        frame:
-            style_prefix "chatbox"
-            ysize 500  # Adjust this value as needed
-            
-            viewport id "message_viewport":
-                yinitial 1.0
-                yadjustment adj
-                scrollbars "vertical"
-                mousewheel True
-                draggable True
-                vbox:
-                    for branch, options in character_chat_history.items():
-                        $ render_branch = character_branch[branch]
-                        $ character_start = render_branch.get("character_start", False)
-                        if character_start:
-                                hbox:
-                                    text render_branch["message"]
-                        for option in options:
-                            $ render_branch = move_branch_to_the_option(render_branch, option)
-                            $ is_image = render_branch.get("is_image")
+            $ is_image = render_branch.get("is_image")
 
-                            text render_branch["reply_message"] 
-                            if "message" in render_branch:
-                                if is_image:
-                                    add render_branch["message"]
-                                else:
-                                    text render_branch["message"] 
+            if "text" in render_branch:
+                text render_branch["text"] 
+            if "response" in render_branch and not character_start:
+                if is_image:
+                    add render_branch["response"]
+                else:
+                    text render_branch["response"] 
 
-                    # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
-                    $ character_start = current_branch.get("character_start", False)
-                    if character_start:
-                            hbox:
-                                text current_branch["message"]
+        # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
+        $ character_start = current_branch.get("character_start", False)
+        if character_start:
+                hbox:
+                    text current_branch["response"]
 
-    $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic)
+    $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history)
     if money_toped_up: 
         use money_balance
 
 
-    $ replies_present = current_branch.get("replies") 
-    if replies_present:
+    $ options = current_branch.get("options") 
+    if options:
         vbox:
-            
-            for option, repl in current_branch["replies"].items():
-                $ up = current_branch["replies"][option]
-                hbox: 
-                    xpos 2.5
-                    textbutton "[repl['reply_message']]":
-                        action (Function(update_character_chat_history, character_chat_history, topic, option), SetScreenVariable("current_branch", up), Function(lambda adj: adj.change(adj.range), adj)) 
-
-    # timer 0.1 action Function(lambda adj: adj.change(adj.range), adj) repeat True
+            for option in options:
+                hbox:
+                    xpos 1.5
+                    textbutton character_branch[option]['text']:
+                        action (Function(update_character_chat_history, character_chat_history, option, current_topic), SetScreenVariable("current_branch", character_branch[option]), SetScreenVariable("current_topic", None)) 
