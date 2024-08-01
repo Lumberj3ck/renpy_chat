@@ -4,7 +4,7 @@ init -2 python:
             "start": {
                 "response": "Hey! 1519 Lincoln Blvd, it's an Asian restaurant called \"Ifuku\" 🍜",
                 "character_start": True,
-                "options": ["a1", "a2"],
+                "options": ["a1", "a2", "a3"],
                 "a1": {
                     "text": "Can't wait for tonight",
                     "response": "Me too 🥰",
@@ -19,6 +19,7 @@ init -2 python:
                 "a3": {
                     "text": "Loasdf?",
                     "response": "rose.png",
+                    "money_top_up": 999,
                     "is_image": True
                 }
             }
@@ -27,7 +28,7 @@ init -2 python:
         "start": {
             "response": "HeasdlfajIfuku\" 🍜",
             "character_start": True,
-            "options": ["a1", "a2"],
+            "options": ["a1"],
             "a1": {
                 "text": "Can't wait for tonight",
                 "response": "Me too 🥰",
@@ -37,11 +38,13 @@ init -2 python:
             "a2": {
                 "text": "Have you always been a fan of Asian cuisine?",
                 "response": "Yep, I love it! Especially there - the food is amazing!!! 😋",
+                "money_top_up": 999,
                 "options": ["a3"]
             },
             "a3": {
                 "text": "Loasdf?",
                 "response": "rose.png",
+                "money_top_up": 999,
                 "is_image": True
             }
         }

@@ -1,30 +1,41 @@
 ﻿init -1 python:
     balance = 0
+    # required rn!!
     global_events = {
         "Dad":"start",
         "Sister":"start"
     }
 
     # Для того чтобы удостовериться что пополнялось один раз за одну ветку
-    last_balance_top_up_branch = ""
+    characters_balance_top_up_branches = {
+    }
+    # last_balance_top_up_branch = ""
 
-    def print_to_file(data):
-        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", "a")
-        f.write(str(data))
-        f.write("\n")
+    def print_to_file(*args, mode="a"):
+        f = open(r"C:\Users\Lumberjack\code\renpy\asd\test.txt", mode)
+        for data in args:
+            f.write(str(data))
+            f.write("\n")
         f.close()
 
     def update_character_chat_history(character_chat_history, topic, option):
         character_chat_history[topic].append(option)
 
-    def top_up_money_if_required(current_branch, character_chat_history, topic):
+    def top_up_money_if_required(current_branch, character_chat_history, topic, who):
         global balance, last_balance_top_up_branch, current_branch_path
 
         money_amount = current_branch.get("money_top_up", 0)
 
-        if money_amount > 0 and last_balance_top_up_branch != character_chat_history[topic]:
+        unique_stamp = "".join(character_chat_history[global_events[who]])
+
+        if who not in characters_balance_top_up_branches:
+            characters_balance_top_up_branches[who] = ""
+
+        last_balance_top_up_branch = characters_balance_top_up_branches[who]
+        if money_amount > 0 and last_balance_top_up_branch != unique_stamp:
+            # print_to_file("last", last_balance_top_up_branch, "chat-history", character_chat_history[topic], mode="w")
             balance += money_amount
-            last_balance_top_up_branch = character_chat_history[topic]
+            characters_balance_top_up_branches[who] = unique_stamp
             return True
         return False
 
@@ -44,7 +55,6 @@
         elif global_event in character_chat_history:
             last_option = character_chat_history[global_event][-1]
             if "options" in character_branch[global_event][last_option]:
-                print_to_file(last_option)
                 branch = character_branch[global_event][last_option]
                 return branch, global_event
 
@@ -159,11 +169,11 @@ screen actions_screen(who):
                 hbox:
                     text current_branch["response"]
 
-    $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic)
+    $ money_toped_up = top_up_money_if_required(current_branch, character_chat_history, topic, who)
     if money_toped_up: 
         use money_balance
 
-    $ print_to_file(current_branch)
+    # $ print_to_file(current_branch)
     if "options" in current_branch:
         # add "asdf.png"
         vbox:

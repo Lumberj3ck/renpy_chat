@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 5: invalid syntax
-            "Sister":"start"
-                     ^
+File "game/script.rpy", line 31: expected an indented block
+        last_balance_top_up_branch = characters_balance_top_up_branches[who]
+         ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Fri Aug  2 00:32:13 2024
+Fri Aug  2 00:59:56 2024
