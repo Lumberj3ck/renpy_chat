@@ -143,6 +143,7 @@ screen actions_screen(who):
         for event, options in character_chat_history.items():
             for option in options:
                 hbox:
+                    # if begining of the event and the event node is required to render
                     if event == option:
                         $ render_branch = character_branch[option]
                     else:
@@ -165,6 +166,7 @@ screen actions_screen(who):
 
         # Если диалог начинает персонаж то мы добавим вот это после загрузки чата
         $ character_start = current_branch.get("character_start", False)
+        # if not at the begining of the event when the event node is already in the history
         if character_start and global_events.get(who, None) != character_chat_history[topic][-1]:
                 hbox:
                     text current_branch["response"]
