@@ -1,28 +1,51 @@
 init -2 python:
     answers =  {
         "Dad": {
+            "start": {
+                "response": "Hey! 1519 Lincoln Blvd, it's an Asian restaurant called \"Ifuku\" 🍜",
+                "character_start": True,
+                "options": ["a1", "a2"],
+                "a1": {
+                    "text": "Can't wait for tonight",
+                    "response": "Me too 🥰",
+                    "money_top_up": 999,
+                    "options": ["a2"]
+                },
+                "a2": {
+                    "text": "Have you always been a fan of Asian cuisine?",
+                    "response": "Yep, I love it! Especially there - the food is amazing!!! 😋",
+                    "options": ["a3"]
+                },
+                "a3": {
+                    "text": "Loasdf?",
+                    "response": "rose.png",
+                    "is_image": True
+                }
+            }
+    },
+    "Sister": {
         "start": {
-            "response": "Hey! 1519 Lincoln Blvd, it's an Asian restaurant called \"Ifuku\" 🍜",
+            "response": "HeasdlfajIfuku\" 🍜",
             "character_start": True,
-            "options": ["a1", "a2"]
-        },
-        "a1": {
-            "text": "Can't wait for tonight",
-            "response": "Me too 🥰",
-            "money_top_up": 999,
-            "options": ["a2"]
-        },
-        "a2": {
-            "text": "Have you always been a fan of Asian cuisine?",
-            "response": "Yep, I love it! Especially there - the food is amazing!!! 😋",
-            "options": ["a3"]
-        },
-        "a3": {
-            "text": "Loasdf?",
-            "response": "rose.png",
-            "is_image": True
+            "options": ["a1", "a2"],
+            "a1": {
+                "text": "Can't wait for tonight",
+                "response": "Me too 🥰",
+                "money_top_up": 999,
+                "options": ["a2"]
+            },
+            "a2": {
+                "text": "Have you always been a fan of Asian cuisine?",
+                "response": "Yep, I love it! Especially there - the food is amazing!!! 😋",
+                "options": ["a3"]
+            },
+            "a3": {
+                "text": "Loasdf?",
+                "response": "rose.png",
+                "is_image": True
+            }
         }
-    }
+}
 
 }
     history = {}

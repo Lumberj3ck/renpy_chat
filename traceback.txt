@@ -1,24 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 80, in script
+  File "game/script.rpy", line 90, in script
     ""
-  File "game/script.rpy", line 125, in execute
+  File "game/script.rpy", line 159, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 125, in execute
+  File "game/script.rpy", line 159, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 140, in execute
-    default branch_and_topic = get_initial_branch(character_branch, who, about)
-  File "game/script.rpy", line 140, in <module>
-    default branch_and_topic = get_initial_branch(character_branch, who, about)
-  File "game/script.rpy", line 67, in get_initial_branch
-    global_event = global_events.get(who, None)
-NameError: name 'global_events' is not defined
+  File "game/script.rpy", line 174, in execute
+    default branch_and_topic = get_initial_branch(who, character_branch, character_chat_history)
+  File "game/script.rpy", line 174, in <module>
+    default branch_and_topic = get_initial_branch(who, character_branch, character_chat_history)
+  File "game/script.rpy", line 65, in get_initial_branch
+    branch = character_branch[global_event]
+KeyError: None
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 80, in script
+  File "game/script.rpy", line 90, in script
     ""
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\ast.py", line 2560, in execute
     Say.execute(self)
@@ -52,19 +52,19 @@ Full traceback:
     self.update()
   File "C:\Users\Lumberjack\Downloads\renpy-8.2.3-sdk.7z\renpy-8.2.3-sdk\renpy\display\screen.py", line 697, in update
     self.screen.function(**self.scope)
-  File "game/script.rpy", line 125, in execute
+  File "game/script.rpy", line 159, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 125, in execute
+  File "game/script.rpy", line 159, in execute
     screen actions_screen(who, about=None):
-  File "game/script.rpy", line 140, in execute
-    default branch_and_topic = get_initial_branch(character_branch, who, about)
-  File "game/script.rpy", line 140, in <module>
-    default branch_and_topic = get_initial_branch(character_branch, who, about)
-  File "game/script.rpy", line 67, in get_initial_branch
-    global_event = global_events.get(who, None)
-NameError: name 'global_events' is not defined
+  File "game/script.rpy", line 174, in execute
+    default branch_and_topic = get_initial_branch(who, character_branch, character_chat_history)
+  File "game/script.rpy", line 174, in <module>
+    default branch_and_topic = get_initial_branch(who, character_branch, character_chat_history)
+  File "game/script.rpy", line 65, in get_initial_branch
+    branch = character_branch[global_event]
+KeyError: None
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.3.24061702
 asd 1.0
-Thu Aug  1 09:43:39 2024
+Fri Aug  2 00:30:45 2024

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/test_dialogs.rpy", line 24: invalid syntax
-            }
-             ^
+File "game/script.rpy", line 5: invalid syntax
+            "Sister":"start"
+                     ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Thu Aug  1 10:09:39 2024
+Fri Aug  2 00:32:13 2024
