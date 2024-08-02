@@ -9,18 +9,22 @@ init -2 python:
                     "text": "Can't wait for tonight",
                     "response": "Me too 🥰",
                     "money_top_up": 999,
-                    "options": ["a2"]
+                    "options": ["a2", "end"]
                 },
                 "a2": {
                     "text": "Have you always been a fan of Asian cuisine?",
                     "response": "Yep, I love it! Especially there - the food is amazing!!! 😋",
-                    "options": ["a3"]
+                    "options": ["a3", "end"]
                 },
                 "a3": {
                     "text": "Loasdf?",
                     "response": "rose.png",
                     "money_top_up": 999,
                     "is_image": True
+                },
+                "end": {
+                    "text": "Good Bye?",
+                    "response": "Good bye",
                 }
             }
     },
